@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import CurrencySelector from "../components/CurrencySelector";
 import useFetchData from "../hooks/useFetch";
-import ErrorComponent from "../components/ErrorComp";
+import ErrorBoundary from "../components/ErrorBoundary";
 import { useAppContext } from "../context/AppContext";
 
 const LiveCurrency = () => {
@@ -25,11 +25,10 @@ const LiveCurrency = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { currentCurrency, setCurrentCurrency } = useAppContext();
   const { rates, error, isLoading } = useFetchData(currentCurrency);
-  //console.log(rates);
 
   if (error) {
     return (
-      <ErrorComponent
+      <ErrorBoundary
         error={{
           title: "Exchange Rate Error",
           message: "Failed to load currency data",

@@ -39,12 +39,15 @@ export const AppProvider = ({ children }) => {
     } else if (numericValue <= 0) {
       error = "Value must be greater than 0";
     } else {
-      if (field === "loanAmount" && numericValue > 100000000)
+      if (field === "loanAmount" && numericValue > 100000000) {
         error = "Max loan is 10,00,00,000";
-      if (field === "interestRate" && numericValue > 100)
+      }
+      if (field === "interestRate" && numericValue > 100) {
         error = "Max interest is 100%";
-      if (field === "termYears" && numericValue > 30)
+      }
+      if (field === "termYears" && numericValue > 30) {
         error = "Max term is 30 years";
+      }
     }
 
     setFormErrors((prev) => ({ ...prev, [field]: error }));

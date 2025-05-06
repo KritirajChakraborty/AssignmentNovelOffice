@@ -7,7 +7,6 @@ import {
 } from "@mui/material";
 
 const CurrencySelector = ({ rates, selectedCurrency, onChange }) => {
-  console.log("Currency Selector rendered");
   return (
     <FormControl fullWidth sx={{ maxWidth: 120 }}>
       <InputLabel id="currency-select-label">Currency</InputLabel>
@@ -19,7 +18,7 @@ const CurrencySelector = ({ rates, selectedCurrency, onChange }) => {
         MenuProps={{
           PaperProps: {
             style: {
-              maxHeight: 300, // Limit dropdown height
+              maxHeight: 300,
             },
           },
         }}

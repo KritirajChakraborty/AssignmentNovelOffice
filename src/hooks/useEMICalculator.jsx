@@ -7,12 +7,11 @@ const useEMICalculator = (loanAmount, interestRate, termYears) => {
     const monthlyRate = interestRate / 12 / 100;
     const totalMonths = termYears * 12;
 
-    // Calculate EMI using the formula
-    const emi =
+    const emi = parseFloat(
       (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
-      (Math.pow(1 + monthlyRate, totalMonths) - 1);
+        (Math.pow(1 + monthlyRate, totalMonths) - 1)
+    );
 
-    // Generate amortization schedule
     let balance = loanAmount;
     const schedule = [];
 
@@ -25,7 +24,7 @@ const useEMICalculator = (loanAmount, interestRate, termYears) => {
         month,
         principal: parseFloat(principal.toFixed(2)),
         interest: parseFloat(interest.toFixed(2)),
-        remainingBalance: Math.abs(parseFloat(balance.toFixed(2))), // Avoid negative values
+        remainingBalance: Math.abs(parseFloat(balance.toFixed(2))),
       });
     }
 

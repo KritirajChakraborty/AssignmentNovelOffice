@@ -17,6 +17,7 @@ const useFetchData = (currentCurrency) => {
             import.meta.env.VITE_API_KEY
           }/latest/${currentCurrency}`
         );
+
         setRates(response.data.conversion_rates || {});
         setError(null);
       } catch (error) {

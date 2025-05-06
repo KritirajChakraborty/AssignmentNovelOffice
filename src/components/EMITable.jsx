@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,7 +9,7 @@ import {
   Button,
   Typography,
   Box,
-  Grid,
+  useTheme,
 } from "@mui/material";
 import CurrencySelector from "./CurrencySelector";
 import { useAppContext } from "../context/AppContext";
@@ -41,7 +40,7 @@ const EMITable = ({ schedule, emi }) => {
           display: "flex",
           alignContent: "center",
           justifyContent: "space-between",
-          mt: 2,
+          my: 2,
         }}
       >
         <CurrencySelector
@@ -67,8 +66,8 @@ const EMITable = ({ schedule, emi }) => {
         Amortization Schedule ({currentCurrency})
       </Typography>
 
-      <TableContainer component={Paper}>
-        <Table>
+      <TableContainer component={Paper} sx={{ maxHeight: "60vh" }}>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell>
