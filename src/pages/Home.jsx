@@ -15,7 +15,7 @@ const Home = () => {
   );
 
   return (
-    <Paper sx={{ px: 10, py: 2 }}>
+    <Paper sx={{ px: 10, py: 2, minHeight: "90vh" }}>
       <LoanCalculator />
       <EMITable schedule={schedule} emi={emi} />
     </Paper>
