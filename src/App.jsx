@@ -4,10 +4,11 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import Home from "./pages/Home";
+import LiveCurrency from "./pages/LiveCurrency";
+import Error from "./pages/Error";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import LiveCurrency from "./components/LiveCurrency";
-import Error from "./components/Error";
+
 import "./App.css";
 
 function App() {

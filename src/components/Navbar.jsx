@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -16,14 +16,15 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import { useThemeMode } from "../context/AppContext";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const { mode, toggleMode } = useThemeMode();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleTabChange = (e, newValue) => {
     navigate(newValue);
@@ -38,9 +39,8 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "#1976d2" }}>
+      <AppBar position="static">
         <Toolbar>
-          {/* Hamburger icon for mobile */}
           {isMobile && (
             <IconButton
               edge="start"
@@ -56,7 +56,6 @@ const Navbar = () => {
             Loan Calculator
           </Typography>
 
-          {/* For Desktop view  */}
           {!isMobile && (
             <Tabs
               value={
@@ -65,6 +64,11 @@ const Navbar = () => {
                   : false
               }
               onChange={handleTabChange}
+              sx={{
+                "& .MuiTabs-indicator": {
+                  display: "none",
+                },
+              }}
             >
               {routes.map((route) => (
                 <Tab
@@ -72,19 +76,16 @@ const Navbar = () => {
                   label={route.label}
                   value={route.path}
                   sx={{
-                    borderRadius: "6px",
-                    px: 2,
                     m: 0.5,
-                    color: "#fff",
-                    backgroundColor:
-                      location.pathname === route.path
-                        ? "#64b5f6"
-                        : "transparent",
+                    borderRadius: 1,
+                    color: theme.palette.common.white,
+                    opacity: location.pathname === route.path ? 1 : 0.7,
                     "&.Mui-selected": {
-                      color: "#fff",
+                      color: theme.palette.common.white,
+                      backgroundColor: mode === "dark" ? "#3d3b3b" : "#2c88dd",
                     },
                     "&:hover": {
-                      backgroundColor: "#0d6cc4",
+                      backgroundColor: mode === "dark" ? "#3d3b3b" : "#0d6cc4",
                     },
                   }}
                 />
@@ -92,11 +93,14 @@ const Navbar = () => {
             </Tabs>
           )}
 
-          <Switch color="default" />
+          <Switch
+            checked={mode === "dark"}
+            onChange={toggleMode}
+            color="default"
+          />
         </Toolbar>
       </AppBar>
 
-      {/* For Mobile Menu */}
       <Drawer
         anchor="left"
         open={drawerOpen}
@@ -114,13 +118,20 @@ const Navbar = () => {
               }}
               sx={{
                 backgroundColor:
-                  location.pathname === route.path ? "#1976d2" : "transparent",
-                color: location.pathname === route.path ? "#fff" : "inherit",
+                  location.pathname === route.path
+                    ? theme.palette.primary.main
+                    : "transparent",
+                color:
+                  location.pathname === route.path
+                    ? theme.palette.common.white
+                    : theme.palette.text.primary,
                 fontWeight:
                   location.pathname === route.path ? "bold" : "normal",
                 "&:hover": {
                   backgroundColor:
-                    location.pathname === route.path ? "#1565c0" : "#f5f5f5",
+                    location.pathname === route.path
+                      ? theme.palette.primary.dark
+                      : theme.palette.action.hover,
                 },
               }}
             >
