@@ -13,8 +13,6 @@ const LoanCalculator = () => {
       return;
     }
 
-    // Proceed with submit logic
-    console.log("Form submitted!", formData);
     setShowTable(true);
   };
 

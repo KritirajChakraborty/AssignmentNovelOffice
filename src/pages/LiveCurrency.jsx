@@ -19,7 +19,6 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import { useAppContext } from "../context/AppContext";
 
 const LiveCurrency = () => {
-  console.log("Live Currency Rendered");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
