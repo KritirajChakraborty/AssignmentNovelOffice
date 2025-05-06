@@ -7,8 +7,9 @@ import {
 } from "@mui/material";
 
 const CurrencySelector = ({ rates, selectedCurrency, onChange }) => {
+  console.log("Currency Selector rendered");
   return (
-    <FormControl fullWidth sx={{ minWidth: 120 }}>
+    <FormControl fullWidth sx={{ maxWidth: 120 }}>
       <InputLabel id="currency-select-label">Currency</InputLabel>
       <Select
         labelId="currency-select-label"

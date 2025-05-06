@@ -16,14 +16,14 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
-import { useThemeMode } from "../context/AppContext";
+import { useAppContext } from "../context/AppContext";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const { mode, toggleMode } = useThemeMode();
+  const { mode, toggleMode } = useAppContext();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleTabChange = (e, newValue) => {
@@ -33,7 +33,6 @@ const Navbar = () => {
   const routes = [
     { label: "HOME", path: "/" },
     { label: "EXCHANGE RATES (LIVE)", path: "/live-currency" },
-    { label: "ABOUT", path: "/about" },
     { label: "ERROR PAGE", path: "/error" },
   ];
 

@@ -13,17 +13,19 @@ import {
   Box,
   Skeleton,
 } from "@mui/material";
-import CurrencySelector from "../components/CurrenncySelector";
+import CurrencySelector from "../components/CurrencySelector";
 import useFetchData from "../hooks/useFetch";
 import ErrorComponent from "../components/ErrorComp";
+import { useAppContext } from "../context/AppContext";
 
-const url = "https://v6.exchangerate-api.com/v6";
 const LiveCurrency = () => {
+  console.log("Live Currency Rendered");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentCurrency, setCurrentCurrency] = useState("INR");
+  const { currentCurrency, setCurrentCurrency } = useAppContext();
   const { rates, error, isLoading } = useFetchData(currentCurrency);
+  //console.log(rates);
 
   if (error) {
     return (
